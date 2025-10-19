@@ -9,11 +9,13 @@ const TubesCursor = dynamic(
 
 export default function CursorOverlay() {
   const [enabled, setEnabled] = useState(false);
+
   useEffect(() => {
-    const isTouch = matchMedia("(pointer: coarse)").matches;
+    // This now enables the animation on all devices, including touch screens.
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setEnabled(!isTouch && !reduce);
+    setEnabled(!reduce);
   }, []);
+
   if (!enabled) return null;
 
   return (
