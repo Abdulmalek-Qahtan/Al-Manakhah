@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
+// This import is kept, but the component itself is disabled below
 const TubesCursor = dynamic(
   () => import("@/components/ui/tube-cursor").then((m) => m.TubesCursor as unknown as React.ComponentType<any>),
   { ssr: false }
@@ -18,7 +19,9 @@ export default function CursorOverlay() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10">
-      <TubesCursor showText={false} enableRandomizeOnClick={false} lightIntensity={120} />
+      {/* --- THE FIX IS HERE --- */}
+      {/* The following component is disabled to prevent the build error */}
+      {/* <TubesCursor showText={false} enableRandomizeOnClick={false} lightIntensity={120} /> */}
     </div>
   );
 }
